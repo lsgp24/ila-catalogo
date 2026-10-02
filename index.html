@@ -533,7 +533,7 @@ textarea.fi { resize: vertical; min-height: 80px; }
   .btn-wa { padding: 10px 8px; font-size: 13px; }
   .btn-wa svg { width: 15px; height: 15px; }
 }
-</style>
+.header{display:none}.nav-tabs{position:sticky;top:0;z-index:50}.hero{min-height:88vh;min-height:88svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 20px 28px;background:radial-gradient(ellipse at 50% 35%,rgba(196,30,42,.35) 0%,rgba(13,13,13,0) 65%),var(--bg);border-bottom:2px solid var(--red);position:relative}.hero{overflow:hidden}.hero-logo{width:min(146vw,760px);max-width:none;height:auto;margin-bottom:-2vh;filter:drop-shadow(0 10px 30px rgba(196,30,42,.35))}.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(34px,9vw,60px);line-height:1;margin:22px 0 10px;text-transform:uppercase;letter-spacing:.01em}.hero h1 span{color:var(--red2)}.hero-sub{font-size:15px;color:#bbb;line-height:1.5;max-width:420px;margin:0 auto 24px}.hero-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px}.hero-btns button{padding:15px 18px;border-radius:50px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;border:none}.hero-b1{background:var(--red);color:#fff}.hero-b2{background:#25D366;color:#fff}.hero-down{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:22px;animation:heroB 1.6s infinite;cursor:pointer;background:none;border:none}@keyframes heroB{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}@media(min-width:700px){.hero-btns{flex-direction:row;max-width:520px}.hero-btns button{flex:1}}.cert-bar{justify-content:center;text-align:center}.cert-bar .cert-label{text-align:center}.fab-wa,.gear{transition:opacity .25s}body.at-hero .fab-wa,body.at-hero .gear{opacity:0;pointer-events:none}</style>
 </head>
 <body>
 
@@ -602,7 +602,7 @@ textarea.fi { resize: vertical; min-height: 80px; }
     <div class="vcnt" id="vcnt"></div>
   </div>
 
-  <div class="trust-bar">
+  <section class="hero" id="hero"><img class="hero-logo" id="heroLogo" alt="ILA Extintores"><script>document.getElementById('heroLogo').src=document.querySelector('.logo-img').src;(function(){function f(){var h=document.getElementById('hero');document.body.classList.toggle('at-hero',!!h&&h.offsetParent!==null&&h.getBoundingClientRect().bottom>window.innerHeight*0.5)}window.addEventListener('scroll',f,{passive:true});document.addEventListener('DOMContentLoaded',f);f()})()</script><h1>Seguridad contra incendios <span>en Paysandú</span></h1><p class="hero-sub">Venta y recarga de extintores, habilitación de bomberos, señalización y equipos de protección.</p><div class="hero-btns"><button class="hero-b1" onclick="document.querySelector('.nav-tabs').scrollIntoView({behavior:'smooth'})">Ver catálogo</button><button class="hero-b2" onclick="waGeneral()">Consultar por WhatsApp</button></div><button class="hero-down" aria-label="Bajar" onclick="document.querySelector('.nav-tabs').scrollIntoView({behavior:'smooth'})">⌄</button></section><div class="trust-bar">
     <div class="trust-item"><span class="ic">🧯</span> Especialistas en incendio</div>
     <div class="trust-item"><span class="ic">📍</span> Paysandú, Uruguay</div>
     <div class="trust-item"><span class="ic">💬</span> Atención directa por WhatsApp</div>
