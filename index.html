@@ -1527,7 +1527,7 @@ function setPresMode(m) {
 }
 function updateNavVisibility() {
   var ft = document.getElementById('nt-fotos');
-  if (ft) ft.style.display = (gallery && gallery.length) ? '' : 'none';
+  if (ft) ft.style.display = galAll().length ? '' : 'none';
 }
 
 // ── GRID ──
@@ -1644,7 +1644,10 @@ function renderGroupedGrid() {
   for (var i=0; i<idsRendered.length; i++) cIdx[idsRendered[i]] = 0;
 }
 
+var GALERIA_FIJA = [{"url": "fotos/ila-01.jpg", "caption": "Servicio de extintores en Bimba Brüder"}, {"url": "fotos/ila-02.jpg", "caption": "Equipamiento para galpón industrial"}, {"url": "fotos/ila-03.jpg", "caption": "Recarga para OK Servicios Forestales"}, {"url": "fotos/ila-04.jpg", "caption": "Extintores ABC con certificación UNIT"}, {"url": "fotos/ila-05.jpg", "caption": "Extintor, pulsador y salida de emergencia"}, {"url": "fotos/ila-06.jpg", "caption": "Extintor ABC con señalización"}, {"url": "fotos/ila-07.jpg", "caption": "Extintor y cartel instalados en comercio"}, {"url": "fotos/ila-08.jpg", "caption": "Extintor rodante de 50 kg en depósito"}, {"url": "fotos/ila-09.jpg", "caption": "Kit vehicular: extintor 1 kg, balizas y botiquín"}, {"url": "fotos/ila-10.jpg", "caption": "Extintores de CO2 para equipos eléctricos"}, {"url": "fotos/ila-11.jpg", "caption": "Manómetro y precinto de control"}, {"url": "fotos/ila-12.jpg", "caption": "Equipos recargados y precintados"}, {"url": "fotos/ila-13.jpg", "caption": "Extintor instalado en exterior"}, {"url": "fotos/ila-14.jpg", "caption": "Extintor rodante en nuestro local"}, {"url": "fotos/ila-15.jpg", "caption": "Extintor de CO2 listo para entregar"}, {"url": "fotos/ila-16.jpg", "caption": "Extintor instalado en comercio"}, {"url": "fotos/ila-17.jpg", "caption": "Extintores de CO2"}];
+function galAll(){ return (gallery||[]).concat(GALERIA_FIJA); }
 function renderGalleryPublic(){
+  var gallery = galAll();
   var grid = document.getElementById('gal-grid');
   var empty = document.getElementById('gal-empty');
   if (!gallery.length){ grid.innerHTML=''; empty.style.display='block'; return; }
@@ -1657,6 +1660,7 @@ function renderGalleryPublic(){
 }
 
 function openGalleryFs(i){
+  var gallery = galAll();
   if (!gallery.length) return;
   fsPhotos = gallery.map(function(g){return g.url;});
   fsI = i||0;
