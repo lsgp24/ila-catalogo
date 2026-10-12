@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ilaextintoresuy.netlify.app/sitemap.xml
