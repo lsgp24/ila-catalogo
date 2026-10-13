@@ -557,6 +557,11 @@ textarea.fi { resize: vertical; min-height: 80px; }
 @media(min-width:700px){.faq-section{max-width:1100px;margin:0 auto}}
 .dcta-share{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:50px;padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
 @media(max-width:699px){.nav-tabs{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}.nav-tabs.at-end{-webkit-mask-image:none;mask-image:none}.nav-tab{padding:12px 14px}}
+.promo-wrap{padding:14px 0 4px}.promo-strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px;scrollbar-width:none}.promo-strip::-webkit-scrollbar{display:none}
+.promo-card{flex:0 0 82%;scroll-snap-align:center;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45);background:#111}
+.promo-card img{display:block;width:100%;height:auto;aspect-ratio:1/1}
+.promo-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}.promo-dots span{width:7px;height:7px;border-radius:50%;background:#444;transition:all .2s}.promo-dots span.on{background:var(--red);width:18px;border-radius:4px}
+@media(min-width:700px){.promo-strip{display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto;overflow:visible}.promo-card{transition:transform .2s}.promo-card:hover{transform:translateY(-4px)}.promo-dots{display:none}}
 </style>
 </head>
 <body>
@@ -650,21 +655,14 @@ textarea.fi { resize: vertical; min-height: 80px; }
 
   <!-- CATALOGO -->
   <div id="cat-view">
-    <div class="hab-banner" onclick="switchNav('normativa')">
-      <div class="hab-icon">⚠️</div>
-      <div class="hab-txt">
-        <div class="hab-title">¿Tu comercio está habilitado por bomberos?</div>
-        <div class="hab-sub">Evitá multas y clausuras. Tramitamos tu habilitación rápido y sin vueltas.</div>
-      </div>
-      <div class="hab-arrow">→</div>
+    <div class="promo-wrap">
+    <div class="promo-strip" id="promoStrip">
+      <div class="promo-card" onclick="waRecargas()"><img src="https://res.cloudinary.com/wvjhtibp/image/upload/f_auto,q_auto,w_700/v1791918402/qxl3hswgvqltm7ynrslu.jpg" alt="Recarga de bomberitos (extintores) en Paysandú" loading="eager" width="700" height="700"></div>
+      <div class="promo-card" onclick="switchNav('rec')"><img src="https://res.cloudinary.com/wvjhtibp/image/upload/f_auto,q_auto,w_700/v1791918403/e1oyg2amyekaeeqfeyeu.jpg" alt="¿Tu local está habilitado por Bomberos? Habilitación DNB" loading="lazy" width="700" height="700"></div>
+      <div class="promo-card" onclick="promoFiltro(1)"><img src="https://res.cloudinary.com/wvjhtibp/image/upload/f_auto,q_auto,w_700/v1791918403/j35tznw0pn1tdzjdnkxa.jpg" alt="¿Qué extintor necesito? ABC, CO2 y Clase K" loading="lazy" width="700" height="700"></div>
+      <div class="promo-card" onclick="promoFiltro(4)"><img src="https://res.cloudinary.com/wvjhtibp/image/upload/f_auto,q_auto,w_700/v1791918404/elgxjjo7knml3ynjgxnz.jpg" alt="Señalización y luces de emergencia" loading="lazy" width="700" height="700"></div>
     </div>
-    <div class="recarga-banner" onclick="switchNav('normativa')">
-      <div class="recarga-icon">🔄</div>
-      <div class="recarga-txt">
-        <div class="recarga-title">Recarga de extintores y bomberitos</div>
-        <div class="recarga-sub">Los extintores ABC y CO2 se recargan cada 2 años, con ensayo hidrostático cada 4. Consultanos por el tuyo.</div>
-      </div>
-      <div class="recarga-arrow">→</div>
+    <div class="promo-dots" id="promoDots"><span class="on"></span><span></span><span></span><span></span></div>
     </div>
     <div class="search-box">
       <span class="s-icon">🔍</span>
@@ -1519,6 +1517,8 @@ function setPresMode(m) {
   if (m==='proy' && !proyInit) { proyInit = true; renderProyStep(); }
 }
 (function(){var nv=document.querySelector('.nav-tabs');if(!nv)return;function u(){nv.classList.toggle('at-end',nv.scrollLeft+nv.clientWidth>=nv.scrollWidth-4);}nv.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);setTimeout(u,300);})();
+function promoFiltro(k){var f=document.querySelectorAll('#cat-view .filters .filter');var m={1:'Extintor',4:'Señalización'}[k];for(var i=0;i<f.length;i++){if((f[i].getAttribute('onclick')||'').indexOf("'"+m+"'")>=0){f[i].click();var g=document.querySelector('#cat-view .filters');if(g)g.scrollIntoView({behavior:'smooth'});break;}}}
+(function(){var s=document.getElementById('promoStrip'),d=document.getElementById('promoDots');if(!s||!d)return;var dots=d.children,cur=0,t;function upd(){var c=s.children,w=c[0].offsetWidth+12;cur=Math.round(s.scrollLeft/w);for(var i=0;i<dots.length;i++)dots[i].className=i===cur?'on':'';}s.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(upd,60);},{passive:true});setInterval(function(){if(window.innerWidth>=700||document.hidden)return;var r=s.getBoundingClientRect();if(r.bottom<0||r.top>window.innerHeight)return;var n=(cur+1)%s.children.length;s.scrollTo({left:s.children[n].offsetLeft-16,behavior:'smooth'});},5000);})();
 function updateNavVisibility() {
   var ft = document.getElementById('nt-fotos');
   if (ft) ft.style.display = galAll().length ? '' : 'none';
