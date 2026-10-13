@@ -1356,8 +1356,7 @@ async function loadFromFirebase() {
 async function saveToFirebase() {
   if (!db) return false;
   if (!firebase.auth().currentUser) {
-    toast('⚠️ Sesión vencida — cerrá y volvé a entrar al admin');
-    console.error('saveToFirebase: no hay usuario autenticado');
+    var adm=document.getElementById('admin'); if (adm && adm.style.display!=='none' && adm.style.display!=='') toast('⚠️ Sesión vencida — cerrá y volvé a entrar al admin');
     return false;
   }
   try {
