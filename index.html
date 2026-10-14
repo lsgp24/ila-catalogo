@@ -1776,7 +1776,7 @@ function closeDetail(){document.getElementById('detail').style.display='none';do
 function dSlide(dir){if(!dV)return;var ph=gph(dV);if(ph.length<2)return;dI=(dI+dir+ph.length)%ph.length;goDot(dI);}
 function goDot(i){if(!dV)return;var ph=gph(dV);dI=i;document.getElementById('d-slides').style.transform='translateX(-'+(i*100)+'%)';for(var j=0;j<ph.length;j++){var d=document.getElementById('dd-'+j),t=document.getElementById('dt-'+j);if(d)d.className='cdot'+(j===i?' on':'');if(t)t.className='dthumb'+(j===i?' on':'');}}
 (function(){var sx=0;document.getElementById('detail').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});document.getElementById('detail').addEventListener('touchend',function(e){var dx=sx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dSlide(dx>0?1:-1);},{passive:true});})();
-function doShare(){if(!dV)return;var u=location.origin+'/?p='+encodeURIComponent(dV.id);var tx='Mirá este producto de ILA Extintores: '+dV.name;if(navigator.share){navigator.share({title:'ILA Extintores — '+dV.name,text:tx,url:u}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(tx+'\n'+u),'_blank');}}
+function doShare(){if(!dV)return;var u=location.origin+location.pathname+'?p='+encodeURIComponent(dV.id);var tx='Mirá este producto de ILA Extintores: '+dV.name;if(navigator.share){navigator.share({title:'ILA Extintores — '+dV.name,text:tx,url:u}).catch(function(){});}else{window.open('https://wa.me/?text='+encodeURIComponent(tx+'\n'+u),'_blank');}}
 function openFromLink(){try{var id=new URLSearchParams(location.search).get('p');if(id&&findP(id)){openDetail(findP(id).id);}}catch(e){}}
 
 // ── FULLSCREEN ──
